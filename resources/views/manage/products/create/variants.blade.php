@@ -16,12 +16,6 @@
 
         <div class="card">
 
-
-<pre>
-    <?php print_r($errors); ?>
-</pre>
-
-
             <form method="POST" action="{{url('/manage/products/'.$product_id.'/variants')}}" enctype="multipart/form-data">
                 @csrf
                 <div class="card-header">

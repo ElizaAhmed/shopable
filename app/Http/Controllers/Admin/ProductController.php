@@ -184,48 +184,9 @@ class ProductController extends Controller
     public function storeProductVariants(StoreProductVariantRequest $request, $product_id)
     {
 
-        // $validator = Validator::make($request->all(), [
-        //     'variants.*.name' => 'required',
-        //     'variants.*.sku' => 'required',
-        // ]);
-
-        // if ($validator->fails()) {
-        //     return redirect()->back()
-        //                 ->withErrors($validator)
-        //                 ->withInput();
-        // }
-
+        
         
 
-        $validatedData = $request->validate([
-            //'variants' => 'required|array|min:1',
-            'test' => 'required',
-            'test1' => 'required',
-            'test2' => 'required',
-            'test3' => 'required',
-            'test4' => 'required',
-            'test5' => 'required',
-            'test6' => 'required',
-            'test7' => 'required',
-            'test8' => 'required',
-            'test9' => 'required',
-            'test10' => 'required',
-            'test11' => 'required',
-            'test12' => 'required',
-            'test13' => 'required',
-            'test14' => 'required',
-            'test15' => 'required',
-            'test16' => 'required',
-            'test17' => 'required',
-            'test18' => 'required',
-
-            'name.*' => 'required',
-            'variants.*.sku' => 'required',
-
-            // 'variants.*.barcode' => 'required',
-            // 'variants.*.price' => 'required',
-            // 'variants.*.quantity' => 'required',
-        ]);
 
         echo "<pre>";
         print_r($request->all());
