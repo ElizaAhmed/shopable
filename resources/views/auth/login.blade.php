@@ -5,11 +5,23 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+               
+                  <div class="card-body">
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
+
+                    
+ <form method="POST" action="{{ route('login') }}">
                         @csrf
+
+                        <div class="form-group row">
+                            <div class="col-md-4 col-form-label text-md-right"></div>
+
+                            <div class="col-md-6">
+                            <div style="width: 250px; height: 60px; background: blue; ">Logo</div>
+
+                            </div>
+                        </div>
+
 
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
@@ -53,15 +65,33 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-outline-success pr-4 pl-4">
                                     {{ __('Login') }}
                                 </button>
 
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
+                              
+
+                            </div>
+
+                            <div class="col-md-8 offset-md-4">
+
+                            <ul class="list-unstyled mt-2">
+                            
+                            <li><a  href="{{ route('password.request') }}">
+                                        Forgot Your Password?
+                                    </a></li>
+                            <li> <a  href="{{ route('register') }}">
+                                      Don't have account? Please register here
                                     </a>
-                                @endif
+</li>
+                            </ul>
+
+                       
+
+
+
+                               
+
                             </div>
                         </div>
                     </form>
