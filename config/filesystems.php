@@ -57,11 +57,11 @@ return [
 
         's3' => [
             'driver' => 's3',
-            'key' => env('AWS_ACCESS_KEY_ID'),
-            'secret' => env('AWS_SECRET_ACCESS_KEY'),
-            'region' => env('AWS_DEFAULT_REGION'),
-            'bucket' => env('AWS_BUCKET'),
-            'url' => env('AWS_URL'),
+            'key' => 'AKIA4EHJFR6I47RE2RET',
+            'secret' => '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',
+            'region' => 'eu-west-2',
+            'bucket' => 'eliza-shopable',
+            'url' => 'https://s3.eu-west-2.amazonaws.com',
         ],
 
     ],
