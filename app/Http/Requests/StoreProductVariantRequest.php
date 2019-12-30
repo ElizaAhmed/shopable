@@ -23,19 +23,16 @@ class StoreProductVariantRequest extends FormRequest
      */
     public function rules()
     {
-
         return [
-            'variant_names' => 'required|array',
-            'variant_names.*' => 'required_with:variant_options.*',
-            'variant_options' => 'required|array',
-            'variant_options.*' => 'required_with:variant_names.*',
+            'options' => 'required|array|min:1',
+            'options.*.name' => 'required_with:options.*.options',
+            'options.*.options' => 'required_with:options.*.name',
             'variants' => 'required|array|min:1',
             'variants.*.name' => 'required',
             'variants.*.sku' => 'required_without:variants.*.barcode',
             'variants.*.barcode' => 'required_without:variants.*.sku',
             'variants.*.price' => 'required|numeric',
             'variants.*.quantity' => 'required|numeric',
-
         ];
     }
 }

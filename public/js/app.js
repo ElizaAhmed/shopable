@@ -37796,14 +37796,15 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()('.tags').amsifySuggestags({
 });
 jquery__WEBPACK_IMPORTED_MODULE_0___default()('.tags').on('suggestags.change', function (e) {
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('#variants-table').removeClass('d-none');
-  var variants = [];
+  var options = [];
   var variants_table = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#variants-table tbody');
-  variants.push(jquery__WEBPACK_IMPORTED_MODULE_0___default()('input[name="variant_options[0]"]').val());
-  variants.push(jquery__WEBPACK_IMPORTED_MODULE_0___default()('input[name="variant_options[1]"]').val());
-  variants.push(jquery__WEBPACK_IMPORTED_MODULE_0___default()('input[name="variant_options[2]"]').val());
+  options.push(jquery__WEBPACK_IMPORTED_MODULE_0___default()('input[name="options[0][options]"]').val());
+  options.push(jquery__WEBPACK_IMPORTED_MODULE_0___default()('input[name="options[1][options]"]').val());
+  options.push(jquery__WEBPACK_IMPORTED_MODULE_0___default()('input[name="options[2][options]"]').val());
   axios.post('/manage/product-variants', {
-    variants: variants
+    variants: options
   }).then(function (response) {
+    console.log(response.data);
     variants_table.empty();
     response.data.forEach(function (variant, index) {
       var item = '<tr id="variant-' + index + '-item">' + '<td><input type="text" class="form-control form-control-sm" name="variants[' + index + '][name]" value="' + variant + '" readonly></td>' + '<td><input type="text" class="form-control form-control-sm" name="variants[' + index + '][sku]" value=""></td>' + '<td><input type="text" class="form-control form-control-sm" name="variants[' + index + '][barcode]" value=""></td>' + '<td><input type="text" class="form-control form-control-sm text-right" name="variants[' + index + '][price]" value=""></td>' + '<td><input type="text" class="form-control form-control-sm text-right" name="variants[' + index + '][quantity]" value=""></td>' + '<td><span class="variant-button p-2" data-item="' + index + '"><i class="fa fa-trash text-danger"></i></span></td>' + '</tr>';

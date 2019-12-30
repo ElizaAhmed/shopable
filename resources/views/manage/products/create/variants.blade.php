@@ -16,6 +16,10 @@
 
         <div class="card">
 
+        <pre>
+            <?php print_r($errors); ?>
+        </pre>
+
             <form method="POST" action="{{url('/manage/products/'.$product_id.'/variants')}}" enctype="multipart/form-data">
                 @csrf
                 <div class="card-header">
@@ -35,16 +39,16 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><input type="text" class="form-control @error('variant_names.0') is-invalid @enderror" name="variant_names[0]" value="{{old('variant_names.0')}}" placeholder="i.e. Size"></td>
-                                        <td><input type="text" class="form-control tags @error('variant_options.0') is-invalid @enderror" name="variant_options[0]" value="{{old('variant_options.0')}}" placeholder="Type and press enter"></td>
+                                        <td><input type="text" class="form-control @error('options.0.name') is-invalid @enderror" name="options[0][name]" value="{{old('options.0.name')}}" placeholder="i.e. Size"></td>
+                                        <td><input type="text" class="form-control tags @error('options.0.options') is-invalid @enderror" name="options[0][options]" value="{{old('options.0.options')}}" placeholder="Type and press enter"></td>
                                     </tr>
                                     <tr>
-                                        <td><input type="text" class="form-control @error('variant_names.1') is-invalid @enderror" name="variant_names[1]" value="{{old('variant_names.1')}}" placeholder="i.e. Color"></td>
-                                        <td><input type="text" class="form-control tags @error('variant_options.1') is-invalid @enderror" name="variant_options[1]" value="{{old('variant_options.1')}}" placeholder="Type and press enter"></td>
+                                        <td><input type="text" class="form-control @error('options.1.name') is-invalid @enderror" name="options[1][name]" value="{{old('options.1.name')}}" placeholder="i.e. Color"></td>
+                                        <td><input type="text" class="form-control tags @error('options.1.options') is-invalid @enderror" name="options[1][options]" value="{{old('options.1.options')}}" placeholder="Type and press enter"></td>
                                     </tr>
                                     <tr>
-                                        <td><input type="text" class="form-control @error('variant_names.2') is-invalid @enderror" name="variant_names[2]" value="{{old('variant_names.2')}}" placeholder="i.e. Material"></td>
-                                        <td><input type="text" class="form-control tags @error('variant_options.2') is-invalid @enderror" name="variant_options[2]" value="{{old('variant_options.2')}}" placeholder="Type and press enter"></td>
+                                        <td><input type="text" class="form-control @error('options.2.name') is-invalid @enderror" name="options[2][name]" value="{{old('options.2.name')}}" placeholder="i.e. Material"></td>
+                                        <td><input type="text" class="form-control tags @error('options.2.options') is-invalid @enderror" name="options[2][options]" value="{{old('options.2.options')}}" placeholder="Type and press enter"></td>
                                     </tr>
                                 </tbody>
                             </table>

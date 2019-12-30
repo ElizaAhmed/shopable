@@ -9,12 +9,16 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use App\Product;
 use App\ProductImage;
+use App\ProductVariantName;
+use App\ProductVariantOption;
+use App\ProductVariant;
 use App\Http\Requests\StoreProductDetailsRequest;
 use Image;
 use App\Http\Requests\StoreProductImageRequest;
 use App\Http\Requests\StoreProductVariantRequest;
+use Illuminate\Database\QueryException;
 
-use Illuminate\Support\Facades\Validator;
+use DB;
 
 
 class ProductController extends Controller
@@ -183,16 +187,47 @@ class ProductController extends Controller
      */
     public function storeProductVariants(StoreProductVariantRequest $request, $product_id)
     {
+        
+        
 
-        
-        
+        $variants = $request->get('variants');
+
+        try {
+            DB::beginTransaction();
+
+            $variant_names = $request->get('variant_names');
+            foreach($variant_names as $name) {
+
+                $product_variant_name = ProductVariantName::create([
+                    'product_id' => $product_id,
+                    'name' => trim($name), 
+                    'created_by' => Auth::user()->id
+                ]);
+
+                $variant_options_str = $request->get('variant_options');
+                $variant_options = explode(',', $variant_options_str);
+                foreach($variant_options as $option) {
+                    ProductVariantOption::create([
+                        'variant_name_id' => $product_variant_name->id,
+                        'option' => trim($option), 
+                        'created_by' => Auth::user()->id
+                    ]);
+                }
+            }
+
+
+
+        } catch (QueryException $ex) {
+            DB::rollBack();
+
+        }
+
+        DB::commit();
 
 
         echo "<pre>";
         print_r($request->all());
         echo "</pre>";
-
-       
 
       // return redirect()->back()->with('data', $data);
     }

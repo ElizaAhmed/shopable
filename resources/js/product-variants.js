@@ -9,18 +9,21 @@ $('.tags').amsifySuggestags({
 $('.tags').on('suggestags.change', function(e){
 
     $('#variants-table').removeClass('d-none');
-    let variants = [];
+    let options = [];
 
     let variants_table = $('#variants-table tbody');
 
-    variants.push($('input[name="variant_options[0]"]').val());
-    variants.push($('input[name="variant_options[1]"]').val());
-    variants.push($('input[name="variant_options[2]"]').val());
+    options.push($('input[name="options[0][options]"]').val());
+    options.push($('input[name="options[1][options]"]').val());
+    options.push($('input[name="options[2][options]"]').val());
     
     axios.post('/manage/product-variants', {
-        variants: variants
+        variants: options
       })
       .then(function (response) {
+
+        
+        console.log(response.data);
 
         
         variants_table.empty();
