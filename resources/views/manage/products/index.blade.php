@@ -2,8 +2,6 @@
 
 @section('content')
 
-
-
 <div class="bg-success d-block mt-3 pl-0">
     <h2 class="float-left">Products</h2>
     <div class="float-right">
@@ -33,7 +31,5 @@
 </table>
 
 {{ $products->links() }}
-
-
 
 @endsection

@@ -116,9 +116,13 @@
 
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
 
+                <div class="d-block mt-3 pl-0">
+                    <h2 class="float-left">@yield('page-title')</h2>
+                    <div class="float-right">@yield('links')</div>
+                </div>
+
 
                 @yield('content')
-
 
             </main>
         </div>

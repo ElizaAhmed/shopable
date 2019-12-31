@@ -277,7 +277,9 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    { }
+    { 
+        return view('manage.products.show');
+    }
 
     /**
      * Show the form for editing the specified resource.

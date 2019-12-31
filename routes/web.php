@@ -32,7 +32,8 @@ Route::group(['prefix' => 'manage', 'middleware' => ['auth', 'admin']], function
     Route::get('products/{product_id}/availability/create', 'Admin\ProductController@createProductAvailability');
     Route::post('products/{product_id}/availability', 'Admin\ProductController@storeProductAvailability');
     
-
+    Route::get('products/{product_id}', 'Admin\ProductController@show');
+    
 
     Route::resource('administrators', 'Admin\AdministratorController');
     //Route::resource('products', 'Admin\ProductController');
