@@ -48,31 +48,31 @@
                 <div class="sidebar-sticky">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link active" href="/manage">
+                            <a class="nav-link active" href="{{url('/manage')}}">
                                 <i class="fa fa-home"></i>
                                 Dashboard <span class="sr-only">(current)</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/manage/orders">
+                            <a class="nav-link" href="{{url('/manage/orders')}}">
                                 <i class="fa fa-copy"></i>
                                 Orders
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/manage/products">
+                            <a class="nav-link" href="{{url('/manage/products')}}">
                             <i class="fa fa-copy"></i>
                                 Products
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/manage/customers">
+                            <a class="nav-link" href="{{url('/manage/customers')}}">
                                 <i class="fa fa-users"></i>
                                 Customers
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/manage/reports">
+                            <a class="nav-link" href="{{url('/manage/reports')}}">
                             <i class="fa fa-copy"></i>
                                 Reports
                             </a>
