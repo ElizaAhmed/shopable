@@ -2,9 +2,7 @@
 
 @section('content')
 
-
-
-<div class="bg-success d-block mt-3 pl-0">
+<div class="d-block mt-3">
     <h2 class="float-left">Products</h2>
     <div class="float-right">
         <a href="{{url('manage/products/details/create')}}" class="btn btn-sm btn-outline-primary">Add Product</a>
