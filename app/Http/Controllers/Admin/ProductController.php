@@ -16,6 +16,7 @@ use App\Http\Requests\StoreProductDetailsRequest;
 use Image;
 use App\Http\Requests\StoreProductImageRequest;
 use App\Http\Requests\StoreProductVariantRequest;
+use App\Http\Requests\StoreProductAvailabilityRequest;
 use Illuminate\Database\QueryException;
 
 use DB;
@@ -30,7 +31,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('manage.products.index');
+        $products = Product::paginate(10);
+        return view('manage.products.index', ['products' => $products]);
     }
 
     /**
@@ -258,7 +260,7 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function storeProductAvailability(Request $request, $product_id)
+    public function storeProductAvailability(StoreProductAvailabilityRequest $request, $product_id)
     {
 
         $all = $request->all();

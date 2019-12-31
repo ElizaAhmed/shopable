@@ -17,7 +17,7 @@
       @foreach($customers as $customer)
     <tr>
       <th scope="row">{{$customer->id}}</th>
-      <td><a href="{{url('/admin/customers/'.$customer->id)}}">{{$customer->first_name}} {{$customer->last_name}}</a></td>
+      <td><a href="{{url('/manage/customers/'.$customer->id)}}">{{$customer->first_name}} {{$customer->last_name}}</a></td>
       <td>{{$customer->email}}</td>
       <td>23</td>
     </tr>
