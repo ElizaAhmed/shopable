@@ -37804,7 +37804,6 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()('.tags').on('suggestags.change', f
   axios.post('/manage/product-variants', {
     variants: options
   }).then(function (response) {
-    console.log(response.data);
     variants_table.empty();
     response.data.forEach(function (variant, index) {
       var item = '<tr id="variant-' + index + '-item">' + '<td><input type="text" class="form-control form-control-sm" name="variants[' + index + '][name]" value="' + variant + '" readonly></td>' + '<td><input type="text" class="form-control form-control-sm" name="variants[' + index + '][sku]" value=""></td>' + '<td><input type="text" class="form-control form-control-sm" name="variants[' + index + '][barcode]" value=""></td>' + '<td><input type="text" class="form-control form-control-sm text-right" name="variants[' + index + '][price]" value=""></td>' + '<td><input type="text" class="form-control form-control-sm text-right" name="variants[' + index + '][quantity]" value=""></td>' + '<td><span class="variant-button p-2" data-item="' + index + '"><i class="fa fa-trash text-danger"></i></span></td>' + '</tr>';
@@ -37841,7 +37840,6 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()('#browse').on('change', function (
 jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).on('click', '.variant-button', function () {
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#variant-" + jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).data('item') + "-item").remove();
   var no_of_row = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#variants-table tbody tr').length;
-  console.log(no_of_row);
 
   if (no_of_row == 0) {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('#variants-table').addClass('d-none');

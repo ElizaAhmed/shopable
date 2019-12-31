@@ -188,48 +188,58 @@ class ProductController extends Controller
     public function storeProductVariants(StoreProductVariantRequest $request, $product_id)
     {
         
-        
-
-        $variants = $request->get('variants');
-
         try {
+
             DB::beginTransaction();
 
-            $variant_names = $request->get('variant_names');
-            foreach($variant_names as $name) {
+            $options = $request->get('options');
+            foreach($options as $option) {
 
-                $product_variant_name = ProductVariantName::create([
-                    'product_id' => $product_id,
-                    'name' => trim($name), 
-                    'created_by' => Auth::user()->id
-                ]);
-
-                $variant_options_str = $request->get('variant_options');
-                $variant_options = explode(',', $variant_options_str);
-                foreach($variant_options as $option) {
-                    ProductVariantOption::create([
-                        'variant_name_id' => $product_variant_name->id,
-                        'option' => trim($option), 
+                if(trim($option['name']) != '') {
+                    $option_name = ProductVariantName::create([
+                        'product_id' => $product_id,
+                        'name' => trim($option['name']), 
                         'created_by' => Auth::user()->id
                     ]);
+    
+                    $variant_options = explode(',', $option['options']);
+                    $variant_option_items = array();
+                    foreach($variant_options as $variant_option) {
+                        $variant_option_items[] = [
+                            'variant_name_id' => $option_name->id,
+                            'option' => trim($variant_option), 
+                            'created_by' => Auth::user()->id
+                        ];
+                    }
+                    ProductVariantOption::insert($variant_option_items);
                 }
             }
 
-
+            $variants = $request->get('variants');
+            $variant_items = array();
+            foreach($variants as $variant) {
+                $variant_items[] = [
+                    'product_id' => $product_id,
+                    'variant' => $variant['name'],
+                    'sku' => $variant['sku'],
+                    'barcode' => $variant['barcode'],
+                    'quantity' => $variant['quantity'],
+                    'price' => $variant['price'],
+                    'created_by' => Auth::user()->id
+                ];
+            }
+            ProductVariant::insert($variant_items);
 
         } catch (QueryException $ex) {
             DB::rollBack();
-
+            return redirect()->back()->with('error', 'Failed to save variants. Please try again.');
         }
 
+        Product::where('id', $product_id)->update(['step_of_inventory' => 3]);
         DB::commit();
 
+        return redirect('/manage/products/'.$product_id.'/availability/create')->with('success', 'Product variants successfully saved.');
 
-        echo "<pre>";
-        print_r($request->all());
-        echo "</pre>";
-
-      // return redirect()->back()->with('data', $data);
     }
 
     /**
@@ -251,10 +261,11 @@ class ProductController extends Controller
     public function storeProductAvailability(Request $request, $product_id)
     {
 
-        $all = $request->file('');
+        $all = $request->all();
 
         echo "<pre>";
         print_r($all);
+        echo "</pre>";
     }
 
     /**

@@ -17,7 +17,7 @@
         <div class="card">
 
         <pre>
-            <?php print_r($errors); ?>
+            <?php //print_r($errors); ?>
         </pre>
 
             <form method="POST" action="{{url('/manage/products/'.$product_id.'/variants')}}" enctype="multipart/form-data">
@@ -55,7 +55,7 @@
 
                             <!-- variant table-->
                             <?php $variants = old('variants'); ?>
-                            <table class="table table-sm table-bordered" id="variants-table">
+                            <table class="table table-sm table-bordered @if(isset($variants) && count($variants) > 0) d-block @else d-none @endif" id="variants-table">
                                 <thead class="thead-light">
                                     <tr>
                                         <th width="50%">Variant</th>

@@ -22,10 +22,6 @@ $('.tags').on('suggestags.change', function(e){
       })
       .then(function (response) {
 
-        
-        console.log(response.data);
-
-        
         variants_table.empty();
         response.data.forEach(function(variant, index) {
 
@@ -84,11 +80,10 @@ var files   = document.querySelector('input[type=file]').files;
 
 
 $(document).on('click', '.variant-button', function() {
+
   $("#variant-"+$(this).data('item')+"-item").remove();
 
   let no_of_row = $('#variants-table tbody tr').length;
-
-  console.log(no_of_row);
 
   if(no_of_row == 0) {
     $('#variants-table').addClass('d-none');
